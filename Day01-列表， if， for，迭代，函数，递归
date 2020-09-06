@@ -1,0 +1,195 @@
+#设置变量，添加变量（单个添加，列表添加），删除变量，查看所有方法 ，统计列表长度，插入值，for循环迭代，在列表中存储列表（嵌套列表取值）
+#在列表中查找列表， isinstance判断，if、for语法都有:（冒号），不要重复代码、应当创建一个函数（递归处理）、函数创建注意语法：（冒号），
+
+>>> movies = ["肖申克的救赎","霸王别姬","大话西游"]          #设置变量
+>>> movies
+['肖申克的救赎', '霸王别姬', '大话西游']
+>>> movies[2]
+'大话西游'
+                                                                             #隔开是为了方便查看
+>>> movies.append('无间道')                                 #增加变量（单个增加，并且添加到列表最后）
+>>> movies
+['肖申克的救赎', '霸王别姬', '大话西游', '无间道']
+>>> num=[1,2,3]
+>>> num
+[1, 2, 3]
+
+>>> movies.extend(num)                                 #增加变量（列表添加）
+>>> movies
+['肖申克的救赎', '霸王别姬', '大话西游', '无间道', 1, 2, 3]
+
+>>> movies.remove(1)                                    #删除变量
+>>> movies.remove(2)
+>>> movies.remove(3)
+>>> movies
+['肖申克的救赎', '霸王别姬', '大话西游', '无间道']
+>>> movies.remove('无间道')
+>>> movies
+['肖申克的救赎', '霸王别姬', '大话西游']
+
+>>> num = [1,2,3]
+>>> isinstance(num,list)                    #判断， isinstance为python内置函数
+True
+>>> num = len(num)
+>>> num
+3
+>>> isinstance(num,list)
+False
+
+>>> dir(movies)                                              #查看所有方法
+['__add__', '__class__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__',
+ '__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__',
+ '__ne__', '__new__', '__reduce__', 
+'__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__',
+ '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+
+>>> len(movies)                   #统计列表长度
+3
+
+>>> movies.insert(1,1994)           #插入值,前面跟插入的位置，后面跟插入的数
+>>> movies.insert(3,1993)
+>>> movies.append(1995)
+>>> movies
+['肖申克的救赎', 1994, '霸王别姬', 1993, '大话西游', 1995]
+
+>>> for i in movies:                      #for循环迭代
+	print(i)
+
+	
+肖申克的救赎
+1994
+霸王别姬
+1993
+大话西游
+1995
+
+
+>>> movies=[                                                      #嵌套列表结构
+    "肖申克的救赎”,1994,"弗兰克德拉邦特”,142,
+        ["蒂姆·罗宾斯”,
+            ["摩根·弗里曼","鲍勃·冈顿","威廉姆·赛德勒","克兰西·布朗&吉尔贝罗斯"]]]  
+>>>movies=[ "肖申克的救赎",1994,"弗兰克德拉邦特",142,["蒂姆·罗宾斯",["摩根·弗里曼","鲍勃·冈顿","威廉姆·赛德勒","克兰西·布朗&吉尔贝罗斯"]]]
+>>> movies
+['肖申克的救赎’,
+1994,
+弗兰克·德拉邦特,
+142,
+[蒂姆·罗宾斯,[摩根·弗里曼,鲍勃·冈顿,威廉姆·赛德勒,克兰西布朗&吉尔贝罗斯]]]
+ >> movies [0]
+肖申克的救赎
+ >>>movies [3]
+142
+ >> movies [4]                                                  #列表中取值
+['蒂姆·罗宾斯',['摩根·弗里曼','鲍勃冈顿','威廉姆·赛德勒','克兰西·布朗&吉尔贝罗斯']]
+ >> movies[4][0]                                       
+蒂姆·罗宾斯
+ >>>movies [4][1]                                             #嵌套列表取值
+['摩根·弗里曼','鲍勃冈顿',威廉姆赛德勒,克兰西布朗&吉尔贝罗斯']
+ >>>movies [4][1][0]                                          #嵌套列表取值       
+摩根弗里曼 
+
+>>> for each_item in movies:                                  #判断是列表则新建for循环打印（迭代列表），不是列表则直接打印，注意if,for循环的语法，都有:
+	if isinstance(each_item,list):
+		for nested_item in each_item:      #迭代列表
+			print(nested_item)
+	else:
+		print(each_item)
+
+		
+肖申克的救赎
+1994
+弗兰克德拉邦特
+142
+蒂姆·罗宾斯
+['摩根·弗里曼', '鲍勃·冈顿', '威廉姆·赛德勒', '克兰西·布朗&吉尔贝罗斯']
+
+>>> for each_item in movies:                                              #进一步嵌套迭代，将所有列表都打印，注意一个if对应一个else
+	if isinstance(each_item,list):
+		for nested_item in each_item:
+			if isinstance(nested_item,list):
+				for deeper_item in nested_item:
+					print(deeper_item)
+			else:
+				print(nested_item)
+	else:
+		print(each_item)
+
+		
+肖申克的救赎
+1994
+弗兰克德拉邦特
+142
+蒂姆·罗宾斯
+摩根·弗里曼
+鲍勃·冈顿
+威廉姆·赛德勒
+克兰西·布朗&吉尔贝罗斯
+
+>>> def print_lol(the_list):                                     #定义函数，括号里为参数，在调用函数时会把参数加进去，例如movies（解决上述无数if,for循环繁杂的方法，便为递归）
+	for each_item in the_list:
+		if isinstance(each_item,list):
+			print_lol(each_item)    #把each_item又作为了函数参数，继续放入函数里执行，实现了循环嵌套
+		else:
+			print(each_item)
+
+			
+>>> print_lol(movies)       #用参数movies来调用print_lol函数
+肖申克的救赎
+1994
+弗兰克德拉邦特
+142
+蒂姆·罗宾斯
+摩根·弗里曼
+鲍勃·冈顿
+威廉姆·赛德勒
+克兰西·布朗&吉尔贝罗斯
+
+总结今日所学：列表， if， for，迭代，函数，递归
+
+作业：定义一个函数，参数为列表（数据项为int型），返回这个列表项的最大值和最小值
+
+eg1:
+numbers = [1, 2, 3]
+
+>>> def print_number(the_list):
+		 if the_list[0] > the_list[1]:
+			 if the_list[2] > the_list[1]:
+				 if the_list[0] > the_list[2]:
+					 print('最大值:' ,the_list[0])
+					 print('最小值：',the_list[1])
+				 else:
+					 print('最大值：',the_list[2])
+					 print('最小值：',the_list[1])
+			 else:
+				 print('最大值:' ,the_list[0])
+				 print('最小值：',the_list[2])
+		 else:
+			 if the_list[1] > the_list[2]:
+				 if the_list[0] > the_list[2]:
+					 print('最大值：',the_list[1])
+					 print('最小值：',the_list[2])
+				 else:
+					 print('最大值：',the_list[1])
+					 print('最小值：',the_list[0])
+			 else:
+				 print('最大值：',the_list[2])
+				 print('最小值：',the_list[0])
+
+				 
+>>> print_number(numbers)
+最大值： 3
+最小值： 1
+
+eg2:
+def max_min(the_list):
+    max = the_list[0]
+    min = the_list[0]
+    for i in the_list:
+        if i>max:
+            max = i
+        if i<min:
+            min = i
+    print(max,min)
+if __name__=='__main__':
+    num = [1,0,4,2,3]
+    max_min(num)
