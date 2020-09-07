@@ -193,3 +193,38 @@ def max_min(the_list):
 if __name__=='__main__':
     num = [1,0,4,2,3]
     max_min(num)
+    
+eg3:
+#coding=utf-8
+
+def max_min(the_list):
+    '''
+    1 0 4 2 3
+    ------------
+    max 1 1 4 4 4
+    min 1 0 0 0 0
+
+max                 min
+1 vs 0
+1 vs 4
+4 vs 2             0 vs 2
+4 vs 3             0 vs 3
+
+'''
+    for i in the_list:
+        if the_list.index(i) == 0:
+            max_value = i
+            min_value = i
+        the_list.pop(0)         #pop(0),就是把索引值为0的1，给剔除列表了，1不在列表里了
+        for j in the_list:
+            if j > max_value:
+                max_value = j
+            if j < min_value:
+                min_value = j
+
+
+    print(max_value,min_value)
+
+if __name__ == '__main__':
+    num = [1,0,4,2,3]
+    max_min(num)
