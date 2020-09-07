@@ -1,0 +1,21 @@
+import random
+'''随机生成一个长度10的列表'''
+list_var=[]
+for int_var in range(10):
+    list_var.append(random.randint(0, 200))
+ 
+def list_fun( parame ):
+    max_int=parame[0]
+    min_int=parame[0]
+    '''遍历列表判断最大最小值'''
+    for i in parame:
+        if max_int <i:
+            max_int=i
+        elif min_int >i:
+            min_int=i 
+        else:
+            continue
+    return (max_int, min_int)
+print ("随机列表"+":",list_var)
+'''调用函数,并打印最大最小值'''
+print (list_fun(list_var))
