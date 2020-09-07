@@ -1,0 +1,102 @@
+#变量，字符串，整数
+
+
+>>> a = 7
+>>> print(a)
+7
+>>> id(7)
+140713337322752
+>>> id(a)
+140713337322752
+
+#变量名只能数字，字母，下划线
+#不要用python关键字，内置函数做变量名，会报错
+#变量名应既简短又具有描述性。如name比n好，student_name比s_n好，name_length比length_of_persons_name好。
+#谨慎使用小写字母l和大写字母O,因为它们可能被人错看成数字1和0.
+#可以使用input?加问号的方式，来看看是不是内置函数.
+
+#布尔类型，真和假，执行后就是返回True和False，or and not
+
+>>> bool(0)
+False
+>>> bool('')
+False
+>>> bool(1)
+True
+>>> bool([1,2])
+True
+
+>>> 2 + 3 * 4
+14
+>>> (2+3)*4
+20
+>>> 0.1+0.1
+0.2
+>>> 2*01
+SyntaxError: invalid token
+>>> 2*0.1
+0.2
+>>> 0.2+0.1
+0.30000000000000004
+>>> 3*0.1
+0.30000000000000004                         #二进制表现十进制的浮点数表现的不精确
+>>> 3*0.1-0.3
+5.551115123125783e-17                     #浮点数有精度问题
+>>> 0.3-0.3
+0.0
+
+ >>> num = [1,2,3,4,5]
+>>> num
+[1, 2, 3, 4, 5]
+>>> num.copy()
+[1, 2, 3, 4, 5]
+>>> n = num.copy
+>>> num.pop()                #剔除
+5
+>>> n
+<built-in method copy of list object at 0x0000012A96CD8A88>
+>>> print(n)
+<built-in method copy of list object at 0x0000012A96CD8A88>
+>>> num.count(2)            #Python count() 方法用于统计字符串里某个字符出现的次数。可选参数为在字符串搜索的开始与结束位置。
+1
+>>> num.count(2)
+1
+>>> num
+[1, 2, 3, 4]
+>>> num.count(1)
+1
+
+>>> num.reverse()             #反序，从大到小排序
+>>> num
+[4, 3, 2, 1]
+
+>>> num.sort()                   #顺序，从小到大排序
+>>> num
+[1, 2, 3, 4]
+
+>>> num[-1]
+4
+>>> num[0]
+1
+
+>>> 1 in num                  #判断值在不在列表里
+True
+>>> 5 in num
+False
+
+>>> n = num[:]              #拷贝
+>>> n
+[1, 2, 3, 4]
+
+>>> n[0] = "one"         #替换值
+>>> n
+['one', 2, 3, 4]
+
+>>> help(num.pop)                   #查看帮助，有的直接在后面加?
+Help on built-in function pop:
+
+pop(index=-1, /) method of builtins.list instance
+    Remove and return item at index (default last).
+    
+    Raises IndexError if list is empty or index is out of range.
+
