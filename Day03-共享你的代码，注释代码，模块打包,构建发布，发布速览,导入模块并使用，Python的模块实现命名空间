@@ -1,0 +1,86 @@
+#共享你的代码，注释代码，模块打包,构建发布，发布速览,导入模块并使用，Python的模块实现命名空间
+#有冲突的请求（嵌套列表的缩进？），range()函数
+
+
+准备发布
+1.首先为模块创建一个文件夹。
+创建了文件夹之后,将 nester.py模块文件复制到这个文件夹中。为了简单起见,下面把这个文件
+夹命名为 nester
+
+（nester.py文件里的代码为：
+def print_lol(the_list):                                     #定义函数，括号里为参数，在调用函数时会把参数加进去，例如movies（解决上述无数if,for循环繁杂的方法，便为递归）
+	for each_item in the_list:
+		if isinstance(each_item,list):
+			print_lol(each_item)    #把each_item又作为了函数参数，继续放入函数里执行，实现了循环嵌套
+		else:
+			print(each_item)
+
+）
+
+
+2.在新文件夹中创建一个名为setup.py的文件
+这个文件包含有关发布的元数据。编辑这个文件,增加下面的代码:
+
+from distutils. core import setup        # 从python发布工具导入 “setup"函数。
+
+ setup(
+name ='nester',                                   #将模块的的元数据与 setup函数的参数关联。
+ version ='1.0.0',
+ py_modules ['nester'],
+ author ='jfedu',                                #这些只是 setup函数的参数名
+ author_email 'ce@jdedu.net',
+url = 'http: //www.jfedu. net',
+description ='A simple printer of nested lists',      #这些只是自定义模块使用的值,你的元数据可以与这里不同
+）
+
+
+3.构建一个发布文件
+发布工具包含有构建一个发布所需得所有功能。在 nester文件夹中打开一个终端窗口,键入一行
+命令: python setup. py sdist
+
+4.将发布安装到你的Python本地副本中。
+仍然在终端窗口中,键入一下命令: sudo python setup. py install
+
+5.利用 Python的发布工具,你的模块已经转换为一个发布,并且安装在你的 Python
+本地副本上。
+开始时只有一个函数,这个函数输入到一个名为 nester.py的文件中,这就创建了一
+个模块。然后创建一个名为 nester的文件夹存放这个模块。通过在这个文件夹中增
+加一个名为 setup.py的文件,从而能够构建和安装你的发布,这会生成一组额外的
+文件,并在 nester文件夹中出现两个新的文件夹。这些文件和文件夹都是由发布工，注册PyPi网站，
+具为你创建的。
+
+6.既然已经构建了模块,并作为发布打包和安装,下面来看使用时还需要什么。要使
+用一个模块,只需要把它导入到你的程序中,或者导入到交互式 shell:
+ 
+
+ import nester               #Python关键字"import",…并提供模块名。
+                                       #注意:导入模块时不需要包合py展名。
+
+
+7. Python中的所有代码都与一个命名空间关联。
+主 Python程序中的代码与一个名为__main__的命名空间关联。将代码放在其单独的模块中时, Python会
+自动创建一个与模块同名的命名空间。所以,你的模块中的代码会与一个名为 nester的命名空间关联。
+假设你目前正在某个命名空间中,如果想指示另外一个模块命名空间中的某个函数,就需要用该模块的
+命名空间名对这个函数的调用作出限制。
+所以,不能简单地通过 printlol(cast)调用这个函数,而需要限定为 nester printlol(cast)。这样一来
+ Python解释器就会知道去那里找这个函数。命名空间限定的格式如下:首先是模块名,然后是一个点
+号,在后面是函数名
+
+ nester. print_lol(cast)     #模块名,用来标识命名空间。然后正常调用函数,供“cast”作为要处理的列表
+                                         #点号将模块命名空间与函数名分隔开。
+
+8.向PyPi上传代码：
+    命令行注册PyPi:
+     python setup.py register
+    向PyPi上传发布:
+     python setup.py sdist upload
+
+9.>>> range(4)
+range(0, 4)
+>>> list(range(4))
+[0, 1, 2, 3]
+
+9.range0可以提供你需要的控制来迭代指定的次数,而且可以
+用来生成从0直到(但不包含)某个数的数字列表。
+ for num in range(4):
+ print(num)
